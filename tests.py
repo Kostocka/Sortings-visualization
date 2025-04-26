@@ -4,6 +4,7 @@ import random
 
 if __name__ == "__main__":
     n = int(input("Введите размер массива ") )
+    speed = float(input("Введите скорость "))
     arr = [random.randint(1, 100) for _ in range(n)]
 
     sortings = {
@@ -15,6 +16,6 @@ if __name__ == "__main__":
     sort_name = input("Введите какую сортировку изобразить (bubble, merge , quick): ").strip().lower()
 
     if sort_name in sortings:
-        visualize_sort(arr, sortings[sort_name])
+        visualize_sort(arr, sortings[sort_name] , speed)
     else:
         print("Неизвестная сортировка. Доступные варианты: bubble, merge , quick_sort.")

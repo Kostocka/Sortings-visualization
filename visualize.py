@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def print_array(arr, highlights=None, active_range=None):
+def print_array(arr, highlights=None, active_range=None , speed = 0.1):
     plt.clf()
     n = len(arr)
     colors = ['lightgray'] * n
@@ -17,9 +17,9 @@ def print_array(arr, highlights=None, active_range=None):
     plt.bar(range(n), arr, color=colors, width=0.8)
     plt.xlim(-1, n)
     plt.ylim(0, max(arr) * 1.1)
-    plt.pause(0.1)
+    plt.pause(speed)
 
-def visualize_sort(arr, sort_func):
+def visualize_sort(arr, sort_func , speed):
     arr_copy = arr.copy()
     sorted_arr, steps = sort_func(arr_copy)
 
@@ -66,10 +66,10 @@ def visualize_sort(arr, sort_func):
         if pivot_idx is not None:
             highlights[pivot_idx] = "purple" 
 
-        print_array(arr_copy, highlights, active_range)
+        print_array(arr_copy, highlights, active_range , speed)
 
     highlights = {i: "limegreen" for i in range(len(arr_copy))}
-    print_array(arr_copy, highlights)
+    print_array(arr_copy, highlights , None, speed)
 
     plt.ioff()
     plt.show()
