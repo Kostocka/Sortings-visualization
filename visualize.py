@@ -17,7 +17,7 @@ def print_array(arr, highlights=None, active_range=None):
     plt.bar(range(n), arr, color=colors, width=0.8)
     plt.xlim(-1, n)
     plt.ylim(0, max(arr) * 1.1)
-    plt.pause(0.5)
+    plt.pause(0.7)
 
 def visualize_sort(arr, sort_func):
     arr_copy = arr.copy()
@@ -27,6 +27,7 @@ def visualize_sort(arr, sort_func):
     fig = plt.figure()
 
     active_range = None
+    pivot_idx = None 
 
     for step in steps:
         highlights = {}
@@ -46,6 +47,9 @@ def visualize_sort(arr, sort_func):
             l, r, _ = step[1], step[2], step[3]
             active_range = (l, r)
 
+        elif step[0] == 'pivot':
+            pivot_idx = step[1]
+
         elif step[0] == 'merge':
             l, r, _ = step[1], step[2], step[3]
             active_range = (l, r)
@@ -58,6 +62,9 @@ def visualize_sort(arr, sort_func):
                 idx, value = step[1], step[2]
             arr_copy[idx] = value
             highlights[idx] = "limegreen"
+
+        if pivot_idx is not None:
+            highlights[pivot_idx] = "purple" 
 
         print_array(arr_copy, highlights, active_range)
 

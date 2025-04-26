@@ -63,3 +63,40 @@ def merge_sort(arr):
 
     splitting(0, len(arr) - 1, 0)
     return arr, steps
+
+def quick_sort(arr):
+    arr = arr.copy()
+    steps = []
+
+    def quick(l , r, depth):
+
+        if l >= r:
+            return 
+
+        pivot_idx = (l + r) // 2
+        pivot = arr[pivot_idx]
+        i , j = l , r
+
+        steps.append(('split', l, r, depth))
+        steps.append(('pivot', pivot_idx))
+
+        while i <= j:
+            while arr[i] < pivot :
+                steps.append(('compare', i, -1))
+                i+=1
+
+            while arr[j] > pivot :
+                steps.append(('compare', j, -1))
+                j-=1
+            
+            if i <= j:
+                arr [i] , arr[j] = arr[j] , arr[i]
+                steps.append(('swap', i, j))
+                i += 1
+                j -= 1
+
+        quick(l , j , depth + 1)
+        quick(i , r , depth + 1)
+
+    quick(0, len(arr) - 1 , 0)
+    return arr, steps
