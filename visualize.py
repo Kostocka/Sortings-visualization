@@ -17,7 +17,7 @@ def print_array(arr, highlights=None, active_range=None):
     plt.bar(range(n), arr, color=colors, width=0.8)
     plt.xlim(-1, n)
     plt.ylim(0, max(arr) * 1.1)
-    plt.pause(0.7)
+    plt.pause(0.1)
 
 def visualize_sort(arr, sort_func):
     arr_copy = arr.copy()
@@ -67,6 +67,9 @@ def visualize_sort(arr, sort_func):
             highlights[pivot_idx] = "purple" 
 
         print_array(arr_copy, highlights, active_range)
+
+    highlights = {i: "limegreen" for i in range(len(arr_copy))}
+    print_array(arr_copy, highlights)
 
     plt.ioff()
     plt.show()
